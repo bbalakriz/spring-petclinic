@@ -31,6 +31,9 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Juergen Hoeller
  * @author Ken Krebs
@@ -41,6 +44,7 @@ import java.util.Map;
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final Logger logger = LogManager.getLogger(OwnerController.class);
 
 	// Comment Autowired
 	@Autowired
@@ -84,7 +88,7 @@ class OwnerController {
 	@GetMapping("/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
 
-		System.out.println("Searching for " + owner.getLastName().trim());
+		logger.info("Searching for " + owner.getLastName().trim());
 
 		// find owners by last name
 		Collection<Owner> results = this.owners.findByLastName(owner.getLastName());
