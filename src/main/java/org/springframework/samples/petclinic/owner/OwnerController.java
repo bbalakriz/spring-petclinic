@@ -44,6 +44,7 @@ import org.apache.logging.log4j.Logger;
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+
 	private static final Logger logger = LogManager.getLogger(OwnerController.class);
 
 	// Comment Autowired
