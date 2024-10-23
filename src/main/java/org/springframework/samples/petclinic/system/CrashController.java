@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Controller used to showcase what happens when an exception is thrown
@@ -28,8 +29,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 class CrashController {
 
+	private final OutboundHttpController outboundHttpController;
+
+	// Constructor injection of FirstController
+	@Autowired
+	public CrashController(OutboundHttpController outboundHttpController) {
+		this.outboundHttpController = outboundHttpController;
+	}
+
 	@GetMapping("/oups")
 	public String triggerException() {
+		System.out.println(outboundHttpController.getObjects());
 		throw new RuntimeException(
 				"Expected: controller used to showcase what " + "happens when an exception is thrown");
 	}
